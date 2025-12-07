@@ -3,8 +3,8 @@ import os
 import threading
 import asyncio
 
-# Импорт запуска бота
-from bot import main as bot_main
+# Импорт функции запуска бота
+from bot import run_bot
 
 app = Flask(__name__)
 
@@ -13,7 +13,7 @@ def home():
     return "Server is running!"
 
 def start_bot():
-    asyncio.run(bot_main())
+    asyncio.run(run_bot())
 
 if __name__ == "__main__":
     bot_thread = threading.Thread(target=start_bot)
