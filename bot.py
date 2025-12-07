@@ -10,5 +10,5 @@ dp = Dispatcher()
 async def echo(message: types.Message):
     await message.answer("Бот работает!")
 
-async def run_bot():
+async def main():
     await dp.start_polling(bot)
