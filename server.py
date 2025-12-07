@@ -1,17 +1,4 @@
-from flask import Flask
-import threading
-from bot import run_bot
-
-app = Flask(__name__)
-
-@app.get("/")
-def home():
-    return "Bot is running!"
-
-# Запускаем бота в отдельном потоке
-def start_bot():
-    run_bot()
-
-bot_thread = threading.Thread(target=start_bot)
-bot_thread.daemon = True
-bot_thread.start()
+if __name__ == "__main__":
+    import os
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
