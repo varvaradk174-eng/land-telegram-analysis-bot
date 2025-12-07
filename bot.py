@@ -1,16 +1,14 @@
-import os
-import telebot
+import asyncio
+from aiogram import Bot, Dispatcher, types
 
-TOKEN = os.getenv("BOT_TOKEN")
-bot = telebot.TeleBot(TOKEN)
+TOKEN = "ТВОЙ_ТОКЕН"
 
-@bot.message_handler(commands=["start"])
-def start(message):
-    bot.reply_to(message, "Здравствуйте! Я ваш помощник магазина. Задайте вопрос 😊")
+bot = Bot(token=TOKEN)
+dp = Dispatcher()
 
-@bot.message_handler(func=lambda x: True)
-def answer(message):
-    bot.reply_to(message, "Спасибо за вопрос! Я пока тестовый бот и скоро научусь анализировать ваш шоп ❤️")
+@dp.message()
+async def echo(message: types.Message):
+    await message.answer("Бот работает!")
 
-def run_bot():
-    bot.polling(none_stop=True)
+async def run_bot():
+    await dp.start_polling(bot)
